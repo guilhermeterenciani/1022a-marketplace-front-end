@@ -12,9 +12,9 @@ function App() {
   const [produtos, setProdutos] = useState<ProdutoType []>([])
   //useEffects(O que fazer, quando Fazer) []=> Hora do carregamento da página
   useEffect(() => {
-    setNome("Guilherme Terenciani")
+    setNome("José Rosa Leite")
     //Buscar os dados do BackENd
-    fetch("https://one022a-marketplace-e90o.onrender.com/produtos")
+    fetch("https://one022a-marketplace-05xu.onrender.com/produtos")
       .then(resposta => resposta.json())
       .then(dados => setProdutos(dados))
     //Colocar em uma variável
