@@ -11,13 +11,12 @@ function AlterarProduto(){
         async function handleForm(event:FormEvent){
             event.preventDefault()
             try{
-                const resposta = await fetch("http://localhost:8000/produtos",{
-                    method:"POST",
+                const resposta = await fetch(`http://localhost:8000/produtos/${id}`,{
+                    method:"PUT",
                     headers:{
                         "Content-Type":"application/json"
                     },
                     body:JSON.stringify({
-                        id:id,
                         nome:nome,
                         descricao:descricao,
                         preco:preco,
@@ -25,12 +24,12 @@ function AlterarProduto(){
                     })
                 })
                 if(resposta.status!=500){
-                    alert("Produto Cadastro com Sucesso")
+                    alert("Produto Alterado com Sucesso")
                     navigate("/")
                 }
                 else{
                     const mensagem = await resposta.text()
-                    alert("Erro ao Cadastrar Produto - Error: "+mensagem)
+                    alert("Erro ao Alterar Produto - Error: "+mensagem)
                 }
             }
             catch(e){
