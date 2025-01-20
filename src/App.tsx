@@ -21,7 +21,6 @@ type UsuarioType = {
 }
 
 function App() {
-  const navegate = useNavigate()
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
   const [usuarios, setUsuarios] = useState<UsuarioType[]>([])
 
