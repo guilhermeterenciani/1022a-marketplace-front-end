@@ -43,7 +43,14 @@ function App() {
     fetch(`http://localhost:8000/produtos/${id}`, {
       method: 'DELETE'
     })
-    // Atualizar a lista de produtos
+    .then(resposta=>{
+      if(resposta.status ===200){
+        alert("Produto excluído com sucesso")
+        window.location.reload()
+      }else{
+        alert("Erro ao excluir o produto: Confira o terminal do backend")
+      }
+    })
   }
 
   return (
