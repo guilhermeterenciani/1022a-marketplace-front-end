@@ -1,60 +1,59 @@
 import { useParams } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import { ChangeEvent, FormEvent, useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 function AlterarProduto(){
     const { id } = useParams()
     useEffect(()=>{
-        fetch(`http://localhost:3001/produtos/${id}`)
-        .then(resposta => resposta.json())
+        fetch(`http://localhost:8000/produtos/${id}`)
+        .then(resposta=>resposta.json())
         .then(dados=>console.log(dados))
-    })
-        const navigate = useNavigate()
-        const [nome,setNome] = useState("")
-        const [descricao,setDescricao] = useState("")
-        const [preco,setPreco] = useState("")
-        const [imagem,setImagem] = useState("")
-        async function handleForm(event:FormEvent){
-            event.preventDefault()
-            try{
-                const resposta = await fetch("http://localhost:8000/produtos",{
-                    method:"POST",
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-                    body:JSON.stringify({
-                        id:id,
-                        nome:nome,
-                        descricao:descricao,
-                        preco:preco,
-                        imagem:imagem
-                    })
+    },[])
+    const navigate = useNavigate()
+    const [nome,setNome] = useState("")
+    const [descricao,setDescricao] = useState("")
+    const [preco,setPreco] = useState("")
+    const [imagem,setImagem] = useState("")
+    async function handleForm(event:FormEvent){
+        event.preventDefault()
+        try{
+            const resposta = await fetch(`http://localhost:8000/produtos/${id}`,{
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    nome:nome,
+                    descricao:descricao,
+                    preco:preco,
+                    imagem:imagem
                 })
-                if(resposta.status!=500){
-                    alert("Produto alterado com Sucesso")
-                    navigate("/")
-                }
-                else{
-                    const mensagem = await resposta.text()
-                    alert("Erro ao alterar Produto - Error: "+mensagem)
-                }
+            })
+            if(resposta.status!=500){
+                alert("Produto Alterado com Sucesso")
+                navigate("/")
             }
-            catch(e){
-                alert("Servidor não está respondendo.")
+            else{
+                const mensagem = await resposta.text()
+                alert("Erro ao Alterar Produto - Error: "+mensagem)
             }
-            
         }
-        function handleNome(event:ChangeEvent<HTMLInputElement>){
-            setNome(event.target.value)
+        catch(e){
+            alert("Servidor não está respondendo.")
         }
-        function handleDescricao(event:ChangeEvent<HTMLInputElement>){
-            setDescricao(event.target.value)
-        }
-        function handlePreco(event:ChangeEvent<HTMLInputElement>){
-            setPreco(event.target.value)
-        }
-        function handleImagem(event:ChangeEvent<HTMLInputElement>){
-            setImagem(event.target.value)
-        }
+        
+    }
+    function handleNome(event:ChangeEvent<HTMLInputElement>){
+        setNome(event.target.value)
+    }
+    function handleDescricao(event:ChangeEvent<HTMLInputElement>){
+        setDescricao(event.target.value)
+    }
+    function handlePreco(event:ChangeEvent<HTMLInputElement>){
+        setPreco(event.target.value)
+    }
+    function handleImagem(event:ChangeEvent<HTMLInputElement>){
+        setImagem(event.target.value)
+    }
     return(
         <>
             <h1>Alterar</h1>

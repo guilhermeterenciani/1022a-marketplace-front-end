@@ -2,7 +2,7 @@ import {  ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 function CadastroProduto(){
     const navigate = useNavigate()
-    const [id,setId] = useState("")
+    const [id,setId] = useState(0)
     const [nome,setNome] = useState("")
     const [descricao,setDescricao] = useState("")
     const [preco,setPreco] = useState("")
@@ -38,7 +38,7 @@ function CadastroProduto(){
         
     }
     function handleId(event:ChangeEvent<HTMLInputElement>){
-        setId(event.target.value)
+        setId(event.target.valueAsNumber)
     }
     function handleNome(event:ChangeEvent<HTMLInputElement>){
         setNome(event.target.value)
