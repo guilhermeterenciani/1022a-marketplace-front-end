@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import CadastroProduto from './componentes/cadastroproduto/CadastroProduto.tsx';
-import AlterarProduto from './componentes/alterarproduto/AlterarProduto.tsx'
+import AlterarProduto from './componentes/alterarproduto/AlterarProduto.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
     element: <CadastroProduto/>,
   },
   {
-    path: "/",
-    element: <AlterarProduto/>
+    path: "/alterar-produto/:id",
+    element: <AlterarProduto/>,
   },
 ]);
 

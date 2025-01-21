@@ -25,12 +25,12 @@ function AlterarProduto(){
                     })
                 })
                 if(resposta.status!=500){
-                    alert("Produto Cadastro com Sucesso")
+                    alert("Produto alterado com Sucesso")
                     navigate("/")
                 }
                 else{
                     const mensagem = await resposta.text()
-                    alert("Erro ao Cadastrar Produto - Error: "+mensagem)
+                    alert("Erro ao alterar Produto - Error: "+mensagem)
                 }
             }
             catch(e){

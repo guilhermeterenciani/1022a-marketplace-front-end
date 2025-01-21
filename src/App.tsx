@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 // Tipo para produtos
 type ProdutoType = {
@@ -21,7 +21,6 @@ type UsuarioType = {
 }
 
 function App() {
-  const navigate = useNavigate()
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
   const [usuarios, setUsuarios] = useState<UsuarioType[]>([])
 
@@ -40,13 +39,13 @@ function App() {
 
   function handleExcluir(id:number){
     alert(`Excluir o produto com id ${id}`)
-    fetch(`http://localhost:8000/produtos${id}`,{
+    fetch(`http://localhost:8000/produtos/${id}`, {
       method: 'DELETE'
     })
     .then(resposta=>{
       if(resposta.status ===200){
-      alert("Produto excluído com sucesso")
-      window.location.reload()
+        alert("Produto excluído com sucesso")
+        window.location.reload()
       }else{
         alert("Erro ao excluir o produto: Confira o terminal do backend")
       }
@@ -90,7 +89,7 @@ function App() {
                 <p className="produto-descricao">{produto.descricao}</p>
                 <button className="botao-comprar">Comprar</button>
                 <button onClick={() => handleExcluir(produto.id)}>Excluir</button>
-                <Link to="">Alterar</Link>
+                <Link to={`/alterar-produto/${produto.id}`}>Alterar</Link>
               </div>
             ))
           }
