@@ -1,8 +1,13 @@
 import { useParams } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 function AlterarProduto(){
     const { id } = useParams()
+    useEffect(()=>{
+        fetch(`http://localhost:3001/produtos/${id}`)
+        .then(resposta => resposta.json())
+        .then(dados=>console.log(dados))
+    })
         const navigate = useNavigate()
         const [nome,setNome] = useState("")
         const [descricao,setDescricao] = useState("")
