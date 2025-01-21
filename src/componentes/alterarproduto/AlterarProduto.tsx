@@ -6,7 +6,12 @@ function AlterarProduto(){
     useEffect(()=>{
         fetch(`http://localhost:8000/produtos/${id}`)
         .then(resposta=>resposta.json())
-        .then(dados=>console.log(dados))
+        .then(dados=>{
+            setNome(dados.nome)
+            setDescricao(dados.descricao)
+            setPreco(dados.preco)
+            setImagem(dados.imagem)
+        })
     },[])
     const navigate = useNavigate()
     const [nome,setNome] = useState("")
@@ -62,16 +67,16 @@ function AlterarProduto(){
                     <input placeholder="Id" type="text" name="id" id="id" value={id} readOnly/>
                 </div>
                 <div>
-                    <input placeholder="Nome" type="text" name="nome" id="nome" onChange={handleNome} />
+                    <input placeholder="Nome" type="text" name="nome" id="nome" value={nome} onChange={handleNome} />
                 </div>
                 <div>
-                    <input placeholder="Descrição" type="text" name="descricao" id="descricao" onChange={handleDescricao} />
+                    <input placeholder="Descrição" type="text" name="descricao" id="descricao" value={descricao} onChange={handleDescricao} />
                 </div>
                 <div>
-                    <input placeholder="Preço" type="text" name="preco" id="preco" onChange={handlePreco} />
+                    <input placeholder="Preço" type="text" name="preco" id="preco" value={preco} onChange={handlePreco} />
                 </div>
                 <div>
-                    <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" onChange={handleImagem} />
+                    <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" value={imagem} onChange={handleImagem} />
                 </div>
                 <input type="submit" value="Cadastrar" />
             </form>
