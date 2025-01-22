@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 // Tipo para produtos
 type ProdutoType = {
   id: number,
@@ -26,43 +26,33 @@ function App() {
   // useEffect para carregar produtos e usuários
   useEffect(() => {
     // Buscar os produtos
-    fetch("https://one022a-marketplace-e90o.onrender.com/produtos")
+    fetch("http://localhost:8000/produtos")
       .then(resposta => resposta.json())
       .then(dados => setProdutos(dados))
 
     // Buscar os usuários
-    fetch("https://one022a-marketplace-e90o.onrender.com/usuarios")
+    fetch("http://localhost:8000/produtos")
       .then(resposta => resposta.json())
       .then(dados => setUsuarios(dados))
   }, [])
 
-  useEffect(() => {
-    fetch("https://one022a-marketplace-05xu.onrender.com/usuarios")
-      .then(resposta => resposta.json())
-      .then(dados => setUsuarios(dados))
-  }, [])
+  function handleExcluir(id:number){
+    alert(`Excluir o produto com id ${id}`)
+    fetch(`http://localhost:8000/produtos/${id}`, {
+      method: 'DELETE'
+    })
+    .then(resposta=>{
+      if(resposta.status ===200){
+        alert("Produto excluído com sucesso")
+        window.location.reload()
+      }else{
+        alert("Erro ao excluir o produto: Confira o terminal do backend")
+      }
+    })
+  }
 
-return (
+  return (
     <>
-
-
-      <header className="site-header">
-
-
-        <nav className="navigation">
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#produtos">Produtos</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#contato">Contato</a></li>
-            <Link to="/cadastro-produto">Cadastro de Produto</Link>
-          </ul>
-        </nav>
-
-        <div className="header-actions">
-          <button className="login-button">Login</button>
-        </div>
-      </header>
       {/* Listagem de Produtos */}
       <div className="produtos-container">
       <Link to="/cadastro-produto">Cadastro de Produto</Link>
@@ -78,6 +68,8 @@ return (
                 <p className="produto-preco">{produto.preco}</p>
                 <p className="produto-descricao">{produto.descricao}</p>
                 <button className="botao-comprar">Comprar</button>
+                <button onClick={() => handleExcluir(produto.id)}>Excluir</button>
+                <Link to={`/alterar-produto/${produto.id}`}>Alterar</Link>
               </div>
             ))
           }

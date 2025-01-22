@@ -246,7 +246,9 @@
 @media (max-width: 768px) {
   .produto-item,
   .usuario-item {
-    width: calc(100% - 1rem);}
+    width: calc(100% - 1rem);
+  }
+}
 
 
 
@@ -267,4 +269,4 @@
 }
 .produto-item>.container-imagem>img{
   width: 100%;
-}}
+}
