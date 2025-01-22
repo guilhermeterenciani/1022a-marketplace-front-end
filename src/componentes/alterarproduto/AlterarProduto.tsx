@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function AlterarProduto(){
     const { id } = useParams()
     useEffect(()=>{
-        fetch(`http://localhost:8000/produtos/${id}`)
+        fetch(`https://one022a-marketplace-e90o.onrender.com/produtos/${id}`)
         .then(resposta=>resposta.json())
         .then(dados=>{
             setNome(dados.nome)
