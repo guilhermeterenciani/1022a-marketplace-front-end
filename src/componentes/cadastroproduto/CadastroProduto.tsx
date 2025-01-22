@@ -1,6 +1,6 @@
 import {  ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from 'react-router-dom';
-function CadastroProduto(){
+ function CadastroProduto(){
     const navigate = useNavigate()
     const [id,setId] = useState(0)
     const [nome,setNome] = useState("")
