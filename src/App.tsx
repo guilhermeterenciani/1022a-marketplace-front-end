@@ -10,15 +10,6 @@ type ProdutoType = {
   imagem: string
 }
 
-// Tipo para usuários
-type UsuarioType = {
-  id: number,
-  name: string,
-  email: string,
-  created_at: string,
-  updated_at: string
-}
-
 function App() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
 
@@ -28,11 +19,6 @@ function App() {
     fetch("https://one022a-marketplace-e90o.onrender.com/produtos")
       .then(resposta => resposta.json())
       .then(dados => setProdutos(dados))
-
-    // Buscar os usuários
-    fetch("https://one022a-marketplace-e90o.onrender.com/produtos")
-      .then(resposta => resposta.json())
-      .then(dados => setUsuarios(dados))
   }, [])
 
   function handleExcluir(id:number){
