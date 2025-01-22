@@ -6,6 +6,7 @@ function AlterarProduto(){
     useEffect(()=>{
         fetch(`http://localhost:8000/produtos/${id}`)
         .then(resposta=>resposta.json())
+        .then(dados=>console.log(dados))
         .then(dados=>{
             setNome(dados.nome)
             setDescricao(dados.descricao)
