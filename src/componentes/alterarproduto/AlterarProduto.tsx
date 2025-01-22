@@ -21,7 +21,7 @@ function AlterarProduto(){
     async function handleForm(event:FormEvent){
         event.preventDefault()
         try{
-            const resposta = await fetch(`http://localhost:8000/produtos/${id}`,{
+            const resposta = await fetch(`https://one022a-marketplace-e90o.onrender.com/produtos/${id}`,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json"
