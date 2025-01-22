@@ -21,7 +21,6 @@ type UsuarioType = {
 
 function App() {
   const [produtos, setProdutos] = useState<ProdutoType[]>([])
-  const [usuarios, setUsuarios] = useState<UsuarioType[]>([])
 
   // useEffect para carregar produtos e usuários
   useEffect(() => {
