@@ -7,6 +7,12 @@ function AlterarProduto(){
         fetch(`http://localhost:8000/produtos/${id}`)
         .then(resposta=>resposta.json())
         .then(dados=>console.log(dados))
+        .then(dados=>{
+            setNome(dados.nome)
+            setDescricao(dados.descricao)
+            setPreco(dados.preco)
+            setImagem(dados.imagem)
+        })
     },[])
     const navigate = useNavigate()
     const [nome,setNome] = useState("")
@@ -59,21 +65,29 @@ function AlterarProduto(){
             <h1>Alterar</h1>
             <form onSubmit={handleForm}>
                 <div>
+                    <label htmlFor="id">Id</label>
                     <input placeholder="Id" type="text" name="id" id="id" value={id} readOnly/>
                 </div>
                 <div>
-                    <input placeholder="Nome" type="text" name="nome" id="nome" onChange={handleNome} />
+                    <label htmlFor="nome">Nome</label>
+                    <input placeholder="Nome" type="text" name="nome" id="nome" value={nome} onChange={handleNome} />
                 </div>
                 <div>
-                    <input placeholder="Descrição" type="text" name="descricao" id="descricao" onChange={handleDescricao} />
+                    <label htmlFor="descricao">Descrição</label>
+                    <input placeholder="Descrição" type="text" name="descricao" id="descricao" value={descricao} onChange={handleDescricao} />
                 </div>
                 <div>
-                    <input placeholder="Preço" type="text" name="preco" id="preco" onChange={handlePreco} />
+                    <label htmlFor="preco">Preço</label>
+                    <input placeholder="Preço" type="text" name="preco" id="preco" value={preco} onChange={handlePreco} />
                 </div>
                 <div>
-                    <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" onChange={handleImagem} />
+                    <label htmlFor="imagem">URL Imagem</label>
+                    <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" value={imagem} onChange={handleImagem} />
+                    {imagem && <img className="imagem-produto-reduzida" src={imagem} alt="Imagem do Produto" />}
                 </div>
-                <input type="submit" value="Cadastrar" />
+                <div>
+                    <input type="submit" value="Alterar" />
+                </div>
             </form>
         </>
     )
