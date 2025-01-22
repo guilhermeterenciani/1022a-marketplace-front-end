@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -64,21 +65,29 @@ function AlterarProduto(){
             <h1>Alterar</h1>
             <form onSubmit={handleForm}>
                 <div>
+                    <label htmlFor="id">Id</label>
                     <input placeholder="Id" type="text" name="id" id="id" value={id} readOnly/>
                 </div>
                 <div>
+                    <label htmlFor="nome">Nome</label>
                     <input placeholder="Nome" type="text" name="nome" id="nome" value={nome} onChange={handleNome} />
                 </div>
                 <div>
+                    <label htmlFor="descricao">Descrição</label>
                     <input placeholder="Descrição" type="text" name="descricao" id="descricao" value={descricao} onChange={handleDescricao} />
                 </div>
                 <div>
+                    <label htmlFor="preco">Preço</label>
                     <input placeholder="Preço" type="text" name="preco" id="preco" value={preco} onChange={handlePreco} />
                 </div>
                 <div>
+                    <label htmlFor="imagem">URL Imagem</label>
                     <input placeholder="URL Imagem" type="text" name="imagem" id="imagem" value={imagem} onChange={handleImagem} />
+                    {imagem && <img className="imagem-produto-reduzida" src={imagem} alt="Imagem do Produto" />}
                 </div>
-                <input type="submit" value="Cadastrar" />
+                <div>
+                    <input type="submit" value="Alterar" />
+                </div>
             </form>
         </>
     )
